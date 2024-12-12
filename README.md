@@ -6,6 +6,15 @@ This repo shares the code for CVPR 2024 paper https://arxiv.org/abs/2403.02249.
 
 Sequence-to-sequence vision-language models are showing promise, but their applicability is limited by their inference latency due to their autoregressive way of generating predictions. We propose a parallel decoding sequence-to-sequence vision-language model, trained with a Query-CTC loss, that marginalizes over multiple inference paths in the decoder. This allows us to model the joint distribution of tokens, rather than restricting to conditional distribution as in an autoregressive model. The resulting model, NARVL, achieves performance on-par with its state-of-the-art autoregressive counterpart, but is faster at inference time, reducing from the linear complexity associated with the sequential generation of tokens to a paradigm of constant time joint inference.
 
+## Method
+
+![NARVL Architecture](examples/archetecture.png)
+
+NARVL borrows the encoder from OFA [46], where the embedding sequence of input text and
+image CNN (ResNet) feature are concatenated in the input token sequence. Unlike the standard transformer decoder that generates outputs
+sequentially, conditioning on the generated sequence, our non-autoregressive decoder takes a sequence of tokens that are learnable weights,
+and generates outputs for all tokens in parallel. As the output sequence length is unknown, we set the number of of learnable query tokens
+to a value (hyperparameter) larger than the largest target sequence length. The loss used, Q-CTC, is described in Eq. 1.
 
 ## Installation
 

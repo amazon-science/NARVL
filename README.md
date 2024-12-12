@@ -14,7 +14,7 @@ NARVL borrows the encoder from OFA, where the embedding sequence of input text a
 
 
 ## Results
-We show some comparisons of autoregressive bseline vs our proposed non-autoregressive model.
+We show some comparisons of autoregressive (AR) baseline vs our proposed non-autoregressive (NAR) model.
 
 ![Results](examples/results.png)
 

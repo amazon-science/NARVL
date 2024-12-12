@@ -175,9 +175,9 @@ class VqaGenTask(OFATask):
         return seq_generator
 
     def valid_step(self, sample, model, criterion, **extra_kwargs):
-        breakpoint()
+        
         loss, sample_size, logging_output = super().valid_step(sample, model, criterion)
-        breakpoint()
+        
 
         if self.uses_ema:
             assert 'ema_model' in extra_kwargs and extra_kwargs['ema_model'] is not None
@@ -243,7 +243,7 @@ class VqaGenTask(OFATask):
                 hyps = [self.index2ans[predict_index] for predict_index in predicts]                    
             
             elif self.cfg.val_inference_type == "beamsearch":
-                breakpoint()
+                
                 raw_hyps = self.inference_step(self.generator, [eval_model], sample, prefix_tokens=sample['prefix_tokens'])
                 hyps = []
                 for i, sample_id in enumerate(sample["id"].tolist()):

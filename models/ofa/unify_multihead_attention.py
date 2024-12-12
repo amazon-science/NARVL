@@ -149,7 +149,7 @@ class MultiheadAttention(nn.Module):
         self.add_zero_attn = add_zero_attn
 
         self.reset_parameters()
-        # breakpoint()
+        
 
         if self.use_xformers:
             xformers_att_config["dropout"] = xformers_att_config.get("dropout", dropout)
@@ -351,7 +351,7 @@ class MultiheadAttention(nn.Module):
         ):
             assert key is not None and value is not None
 
-            # breakpoint()
+            
             if self.use_xformers:
                 return self._xformers_attn_forward(
                     query, key, value, key_padding_mask, need_weights, attn_mask

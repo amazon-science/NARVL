@@ -10,11 +10,14 @@ Sequence-to-sequence vision-language models are showing promise, but their appli
 
 ![NARVL Architecture](examples/archetecture.png)
 
-NARVL borrows the encoder from OFA [46], where the embedding sequence of input text and
-image CNN (ResNet) feature are concatenated in the input token sequence. Unlike the standard transformer decoder that generates outputs
-sequentially, conditioning on the generated sequence, our non-autoregressive decoder takes a sequence of tokens that are learnable weights,
-and generates outputs for all tokens in parallel. As the output sequence length is unknown, we set the number of of learnable query tokens
-to a value (hyperparameter) larger than the largest target sequence length. The loss used, Q-CTC, is described in Eq. 1.
+NARVL borrows the encoder from OFA, where the embedding sequence of input text and image CNN (ResNet) feature are concatenated in the input token sequence. Unlike the standard transformer decoder that generates outputs sequentially, conditioning on the generated sequence, our non-autoregressive decoder takes a sequence of tokens that are learnable weights, and generates outputs for all tokens in parallel. As the output sequence length is unknown, we set the number of learnable query tokens to a value (hyperparameter) larger than the largest target sequence length. The loss used, Q-CTC, is described in Eq. 1.
+
+
+## Results
+We show some comparisons of autoregressive bseline vs our proposed non-autoregressive model.
+
+![Results](examples/results.png)
+
 
 ## Installation
 

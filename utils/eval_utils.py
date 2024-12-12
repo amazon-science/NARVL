@@ -69,7 +69,7 @@ def eval_nat_vqa_gen(task, generator, models, sample, **kwargs):
     #     detok_hypo_str = decode_fn(hypos[i][0]["tokens"][prefix_len:], task.tgt_dict, task.bpe, generator)
         results.append({"question_id": int(sample_id), "answer": detok_hypo_str.strip(), 'time': inf_time})
     scores = [ref_dict.get(result['answer'], 0) for ref_dict, result in zip(sample['ref_dict'], results)]
-    # breakpoint()
+    
     # print(scores)
     return results, scores
 
@@ -313,9 +313,6 @@ def eval_nat_refcoco(task, generator, models, sample, **kwargs):
          'time': inf_time}
         for i, sample_id in enumerate(sample["id"].tolist())
     ]
-    # breakpoint()
-    # print(scores)
-    # breakpoint()
     return results, scores
 
 

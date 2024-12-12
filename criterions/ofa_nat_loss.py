@@ -84,7 +84,7 @@ class LabelSmoothedDualImitationCriterion(FairseqCriterion):
                 logits = utils.log_softmax(outputs, dim=-1) * conf
                 logits = logits.transpose(0, 1)
                 _scores, _tokens = logits.max(-1)
-                # breakpoint()
+                
                 if random.random() < 0.01:
                     # print('logit',  _tokens[0:20, 0])
                     # print('target', targets[0][0:20])
@@ -93,7 +93,7 @@ class LabelSmoothedDualImitationCriterion(FairseqCriterion):
 
                     decoded_sequence = self.tgt_dict.string(_tokens[:, 0]).split(' ')
                     print('prediction', self.bpe.decode(' '.join(decoded_sequence)))
-                    # breakpoint()
+                    
 
                 nll_loss = F.ctc_loss(logits,
                                       targets,

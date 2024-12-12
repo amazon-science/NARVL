@@ -496,12 +496,6 @@ class DetectionDataset(OFADataset):
         with data_utils.numpy_seed(self.seed, self.epoch):
             # print(index)
             detection_samples = self.process_detection(index)
-            # if self.split == 'train' and self.dataset.data_cnt % 8 == 0:
-            #     # breakpoint()
-            #     extra_samples += self.process_pure_text(0) if self.pure_text_dataset else []
-            #     extra_samples += self.process_pure_image(0) if self.pure_image_dataset else []
-            #     extra_samples += self.process_detection(0) if self.detection_dataset else []
-            #     print(self.process_detection(0))
         return detection_samples
 
     def word_starts(self, source):

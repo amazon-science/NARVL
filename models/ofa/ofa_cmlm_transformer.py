@@ -1003,22 +1003,14 @@ class CMLMNATransformerDecoder(NATransformerDecoder):
     def forward_embedding(self, prev_output_tokens, embedding_copy=None, encoder_out=None, code_masks=None):
 
         B, L, D = encoder_out['encoder_embedding'][0].size()
-        # x = encoder_out['encoder_embedding'][0].transpose(0, 1)  # use embedding here
-        # mask = encoder_out['encoder_padding_mask'][0][..., :L]
-        # breakpoint()
+
 
         if self.decoder_input_type == 'query':
             x = self.query_embed.weight.unsqueeze(0).expand(B, -1, -1).clone()
         else:
             x = encoder_out['encoder_embedding'][0][:, :1024, :]
-            # breakpoint()
+            
         mask = torch.zeros(x.shape[0], x.shape[1]).bool().to(x.device)
-
-        # if self.dynamic:
-        #     x, mask, _ = self.dynamic_upsample(x, mask)
-        # else:
-        #     x = self.upsampler(x.transpose(0, 1)).reshape(B, -1, D)
-        #     mask = mask.unsqueeze(-1).expand(B, L, self.src_upsample).reshape(B, -1)
 
         if self.replace_target_embed and self.training and prev_output_tokens is not None:
             assert prev_output_tokens.size(1) == x.size(1), "length must match"
@@ -1527,9 +1519,6 @@ class CMLMNATransformerEncoder(NATransformerEncoder):
                 image_x_2 = self.quant_noise(image_x_2)
             x = torch.cat([image_x_2, x], dim=1)
             embed = torch.cat([image_embed_2, embed], dim=1)
-
-        if self.add_first_token:
-            breakpoint()
 
         return x, embed
 

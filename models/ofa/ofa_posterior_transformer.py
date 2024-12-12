@@ -117,7 +117,7 @@ def make_image_bucket_position(bucket_size, num_relative_distance):
 
 class PosteriorTransformerDecoder(NATransformerDecoder):
     def __init__(self, args, dictionary, embed_tokens, no_encoder_attn=False):
-        # breakpoint()
+        
         super().__init__(args, dictionary, embed_tokens, no_encoder_attn)
         self.src_upsample = getattr(args, "src_upsample", 1)
         # self.upsample_bias = getattr(args, "src_upsample_bias", None)
@@ -448,7 +448,7 @@ class PosteriorTransformerDecoder(NATransformerDecoder):
             self.layers[i].upgrade_state_dict_named(
                 state_dict, "{}.layers.{}".format(name, i)
             )
-        # breakpoint()
+        
 
         prefix = name + "." if name != "" else ""
         # image_params = ["image_position_idx"]
